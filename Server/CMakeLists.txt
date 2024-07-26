@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24.)
 project(server)
 
 file(GLOB project
-    src/*
+	src/*
 )
 
-add_executable(server WIN32 ${project})
+add_executable(server ${project})

@@ -119,7 +119,7 @@ void SMSFrame::ClientHandler() {
         msg[msgSize] = '\0';
         recv(clientSocket, msg, msgSize, NULL);
         {
-            std::lock_guard g(mutex);
+            std::lock_guard<std::mutex> g(mutex);
             wxTheApp->CallAfter([this, msg]() {
                 client->notify(msg);
                 });
@@ -180,7 +180,7 @@ void SMSFrame::OnSendEntered(wxCommandEvent& event) {
     }
 
     {
-        std::lock_guard g(mutex);
+        std::lock_guard<std::mutex> g(mutex);
         msgToSend->Clear();
 
         auto textInScroll = new wxStaticText(textPanel, wxID_ANY, textFromField, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_WORDWRAP);
